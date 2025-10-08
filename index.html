@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Hello Server</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local HTTP Server</title>
+  <style>
+    :root {
+      --bg: rgb(15, 23, 42);
+      --card: rgb(30, 41, 59);
+      --accent: rgb(56, 189, 248);
+      --text: rgb(226, 232, 240);
+      --muted: rgb(148, 163, 184);
+      --hover: rgb(14, 165, 233);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: var(--card);
+      padding: 3rem 4rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    p {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      color: rgb(255, 255, 255);
+      background: var(--accent);
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    a:hover {
+      background: var(--hover);
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body>
-    <h1>It Works!</h1>
-    <p>This page is served by your custom HTTP server.</p>
+  <div class="container">
+    <h1>Welcome to Your HTTP Server</h1>
+    <p>Your local Python web server is running successfully.</p>
+    <a href="/test.html">Open Test Page</a>
+    <footer>Powered by Python · Simple HTTP/1.0 Server</footer>
+  </div>
 </body>
 </html>
