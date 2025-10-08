@@ -19,7 +19,8 @@ def handle_client(connection):
     method, path, version = parts
 
     if method != 'GET':
-        response = "HTTP/1.0 405 Method Not Allowed\r\n\r\n"
+        response = "HTTP/1.0 405 Method Not Allowed\r\n"
+        response += "Connection: close\r\n\r\n"
         connection.sendall(response.encode())
         return
 
@@ -28,7 +29,8 @@ def handle_client(connection):
         path = '/index.html'
 
     filepath = '.' + path  # Serve files from current directory
-
+    
+    # Handling if file is not found
     if not os.path.isfile(filepath):
         body = "<html><body><h1>404 Not Found</h1></body></html>"
         response = "HTTP/1.0 404 Not Found\r\n"
@@ -47,7 +49,8 @@ def handle_client(connection):
 
     header = "HTTP/1.0 200 OK\r\n"
     header += f"Content-Type: {mime_type}\r\n"
-    header += f"Content-Length: {len(body)}\r\n\r\n"
+    header += f"Content-Length: {len(body)}\r\n"
+    header += "Connection: close\r\n\r\n"
 
     print("📤 Sending response headers:\n", header)
     connection.sendall(header.encode() + body)
