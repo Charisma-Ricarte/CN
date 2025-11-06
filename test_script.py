@@ -42,19 +42,33 @@ def run_test(url_file, concurrency):
     return elapsed
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: ./test_script.py <url_list.txt>")
+    if len(sys.argv) < 2:
+        print("Usage: ./test_script.py <url_list.txt> [--concurrency N]")
         sys.exit(1)
 
     url_file = sys.argv[1]
+    concurrency = 10  # default for concurrent run
+
+    # check for optional concurrency argument
+    if len(sys.argv) == 4 and sys.argv[2] == "--concurrency":
+        try:
+            concurrency = int(sys.argv[3])
+            if concurrency < 1:
+                raise ValueError()
+        except ValueError:
+            print("Concurrency must be a positive integer")
+            sys.exit(1)
 
     print("Running sequential test...")
-    t1 = run_test(url_file, concurrency=1)
+    t_seq = run_test(url_file, concurrency=1)
 
-    print("Running concurrent test (10 connections)...")
-    t2 = run_test(url_file, concurrency=10)
+    print(f"Running concurrent test (concurrency={concurrency})...")
+    t_conc = run_test(url_file, concurrency=concurrency)
 
-    print(f"Speedup = {t1 / t2:.2f}x faster")
+    speedup = t_seq / t_conc if t_conc > 0 else float('inf')
+    print(f"Speedup = {speedup:.2f}x faster")
 
 if __name__ == "__main__":
     main()
+
+
