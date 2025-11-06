@@ -54,17 +54,21 @@ ________________________________________________________________________________
     If the limit is reached, they are no longer able to open any more connections.
 
 (3.)Report the times and speedup for concurrent fetch of the URLs in testcase 1 and 2 with the stock http server.
+
     Test 1: 
     Sequential =  
     Concurrent = 
+   
     Test 2: 
     Sequential = 
     Concurrent = 
 
 (4.)Report the times and speedup for concurrent fetch of the URLs in testcase 1 and 2 with your http_server_conc. Are these numbers same as above? Why or why not?
+
     Test 1: 
     Sequential = 
     Concurrent = 
+    
     Test 2: 
     Sequential =  
     Concurrent = 
