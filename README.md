@@ -43,12 +43,31 @@ In this example:
        speedup = sequential_time / concurrent_time
 
 
-What is your strategy for identifying unique clients?
+Required Questions
+________________________________________________________________________________________________________________________________________________________________________________
+(1.)What is your strategy for identifying unique clients?
+    Using the IP address and source port helps distinguish unique clients. 
+    This ensures that even if they share the same IP from a router, each connection is counted per client.
 
-How do you prevent the clients from opening more connections once they have opened the maximum number of connections?
+(2.)How do you prevent the clients from opening more connections once they have opened the maximum number of connections?
+    There is a counter to signify the maximum number of connections a client can have.
+    If the limit is reached, they are no longer able to open any more connections.
 
-Report the times and speedup for concurrent fetch of the URLs in testcase 1 and 2 with the stock http server.
+(3.)Report the times and speedup for concurrent fetch of the URLs in testcase 1 and 2 with the stock http server.
+    Test 1: 
+    Sequential =  
+    Concurrent = 
 
-Report the times and speedup for concurrent fetch of the URLs in testcase 1 and 2 with your http_server_conc. Are these numbers same as above? Why or why not?
+    Test 2: 
+    Sequential = 
+    Concurrent = 
 
-
+(4.)Report the times and speedup for concurrent fetch of the URLs in testcase 1 and 2 with your http_server_conc. Are these numbers same as above? Why or why not?
+    Test 1: 
+    Sequential = 
+    Concurrent = 
+    
+    Test 2: 
+    Sequential =  
+    Concurrent = 
+________________________________________________________________________________________________________________________________________________________________________________
