@@ -19,6 +19,8 @@ Usage:
 
 Example:
     ./http_server_conc.py -p 20001 -maxclient 12 -maxtotal 60
+Make sure to have requests installed:
+  pip install requests
 
 In this example:
  - The server listens on port 20001
@@ -56,20 +58,27 @@ ________________________________________________________________________________
 (3.)Report the times and speedup for concurrent fetch of the URLs in testcase 1 and 2 with the stock http server.
 
     Test 1: 
-    Sequential =  
-    Concurrent = 
+    Sequential = 218.35 s
+    Concurrent = 27.08 s
+    Speedup = 8.48x faster
    
     Test 2: 
-    Sequential = 
-    Concurrent = 
+    Sequential = 24.37 s
+    Concurrent = 9.45 s
+    Speedup = 2.45x faster
 
 (4.)Report the times and speedup for concurrent fetch of the URLs in testcase 1 and 2 with your http_server_conc. Are these numbers same as above? Why or why not?
 
     Test 1: 
-    Sequential = 
-    Concurrent = 
+    Sequential = 223.73 s  
+    Concurrent = 21.00 s  
+    Speedup = 9.49× faster
+
     
     Test 2: 
-    Sequential =  
-    Concurrent = 
+    Sequential = 19.31 s  
+    Concurrent = 8.23 s  
+    Speedup = 2.35× faster
+
+No, they’re not the same. The concurrent HTTP server performs better because it uses multiple threads to handle requests in parallel, reducing wait time and improving performance, especially under heavier loads. This is most noticeable in Test 1, where more URLs are fetched, while in smaller tests like Test 2, the speedup is smaller due to fewer concurrent requests.
 ________________________________________________________________________________________________________________________________________________________________________________
