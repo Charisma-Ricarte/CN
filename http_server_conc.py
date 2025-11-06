@@ -70,14 +70,13 @@ def handle_client(connection, client_addr):
         connection.sendall(header.encode() + body)
 
     except Exception as e:
-        print(f"Error handling {client_addr}: {e}")
+        print(f"[{client_addr}] Error handling request: {e}")
 
     finally:
         connection.close()
 
         # Safely update connection counters
         with lock:
-            global total_connections
             total_connections -= 1
             ip = client_addr[0]
             client_connections[ip] -= 1
@@ -89,6 +88,8 @@ def handle_client(connection, client_addr):
 
 def main():
     """Main server loop with concurrency and connection limits."""
+    global total_connections, client_connections
+
     if len(sys.argv) != 7 or sys.argv[1] != '-p' or sys.argv[3] != '-maxclient' or sys.argv[5] != '-maxtotal':
         print("Usage: ./http_server_conc.py -p <port> -maxclient <num> -maxtotal <num>")
         sys.exit(1)
@@ -121,7 +122,7 @@ def main():
                 msg = "HTTP/1.0 503 Service Unavailable\r\n\r\nToo many total connections"
                 conn.sendall(msg.encode())
                 conn.close()
-                print(f"❌ Refused {addr}: max total connections reached ({max_total})")
+                print(f"Refused {addr}: max total connections reached ({max_total})")
                 continue
 
             # Check per-client limit
@@ -135,7 +136,7 @@ def main():
             # Accept and track connection
             total_connections += 1
             client_connections[ip] = current_client + 1
-            print(f"Accepted connection from {addr} | Total: {total_connections}")
+            print(f"Accepted connection from {addr} | Total active: {total_connections}")
 
         # Spawn a new thread for this connection
         thread = threading.Thread(target=handle_client, args=(conn, addr))
