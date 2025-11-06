@@ -42,7 +42,7 @@ In this example:
 4. Measure and record download times, then compute speedup:
        speedup = sequential_time / concurrent_time
 
-
+________________________________________________________________________________________________________________________________________________________________________________
 Required Questions
 ________________________________________________________________________________________________________________________________________________________________________________
 (1.)What is your strategy for identifying unique clients?
@@ -57,7 +57,6 @@ ________________________________________________________________________________
     Test 1: 
     Sequential =  
     Concurrent = 
-
     Test 2: 
     Sequential = 
     Concurrent = 
@@ -66,7 +65,6 @@ ________________________________________________________________________________
     Test 1: 
     Sequential = 
     Concurrent = 
-    
     Test 2: 
     Sequential =  
     Concurrent = 
